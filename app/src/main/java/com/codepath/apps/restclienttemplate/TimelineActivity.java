@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
-import com.codepath.apps.restclienttemplate.models.TweetsAdapter;
+import com.codepath.apps.restclienttemplate.adapters.TweetsAdapter;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.json.JSONArray;

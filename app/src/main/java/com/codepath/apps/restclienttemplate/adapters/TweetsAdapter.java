@@ -1,7 +1,6 @@
-package com.codepath.apps.restclienttemplate.models;
+package com.codepath.apps.restclienttemplate.adapters;
 
 import android.content.Context;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.codepath.apps.restclienttemplate.ParseRelativeDate;
 import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,7 +57,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     public  class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProfileImage;
-        TextView tvBody, tvScreenName;
+        TextView tvBody, tvScreenName, tvDate;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -64,10 +65,14 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvDate = itemView.findViewById(R.id.tvDate);
         }
 
         public void bind(Tweet tweet) {
+            ParseRelativeDate parse =  new ParseRelativeDate(); // ParseDate obj
+
             tvBody.setText(tweet.body);
+            tvDate.setText(parse.getRelativeTimeAgo(tweet.createdAt)); // Parse the date
             tvScreenName.setText(tweet.user.screenName);
             Glide.with(context).load(tweet.user.publicImageURL).into(ivProfileImage);
         }
