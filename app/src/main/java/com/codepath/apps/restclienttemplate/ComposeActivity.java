@@ -8,10 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 public class ComposeActivity extends AppCompatActivity {
 
     public static final int MAX_TWEET_LENGHT = 140;
 
+    TextInputLayout etComposeParent;
     EditText etCompose;
     Button btnTweet;
 
@@ -20,6 +23,8 @@ public class ComposeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
 
+        etComposeParent = findViewById(R.id.etComposeParent);
+        etComposeParent.setCounterMaxLength(MAX_TWEET_LENGHT);
         etCompose = findViewById(R.id.etCompose);
         btnTweet = findViewById(R.id.btnTweet);
 
