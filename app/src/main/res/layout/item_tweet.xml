@@ -21,18 +21,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="0dp"
-        android:layout_toStartOf="@+id/tvDate"
         android:layout_toEndOf="@+id/ivProfileImage"
+        android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textStyle="bold"
-        tools:text="Pandev1234" />
+        tools:text="Daniel Yamamoto" />
 
     <TextView
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvScreenName"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/ivProfileImage"
@@ -45,8 +45,57 @@
         android:layout_above="@+id/tvBody"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
         android:textAlignment="textEnd"
         android:textSize="12sp"
         tools:text="1d" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/tvDate"
+        android:layout_toEndOf="@+id/tvScreenName"
+        android:text="@danielyamamoto" />
+
+    <ImageView
+        android:id="@+id/ivUrlImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBody"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_toRightOf="@+id/ivProfileImage"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ivProfileImage"
+        android:layout_marginStart="5dp"
+        android:layout_below="@id/ivUrlImage"
+        app:srcCompat="@drawable/ic_vector_heart_stroke" />
+
+    <ImageView
+        android:id="@+id/ivRetweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivUrlImage"
+        android:layout_toRightOf="@+id/ivLike"
+        android:layout_marginStart="130dp"
+        app:srcCompat="@drawable/ic_vector_retweet_stroke" />
+
+    <ImageView
+        android:id="@+id/ivMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivUrlImage"
+        android:layout_toRightOf="@+id/ivRetweet"
+        android:layout_marginStart="130dp"
+        app:srcCompat="@drawable/ic_vector_messages_stroke" />
+
 </RelativeLayout>

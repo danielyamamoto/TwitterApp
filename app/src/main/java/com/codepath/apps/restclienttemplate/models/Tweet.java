@@ -11,7 +11,7 @@ import java.util.List;
 @Parcel
 public class Tweet {
 
-    public String body, createdAt;
+    public String body, createdAt, mediaHttp;
     public User user;
 
     // Empty constructor needed by the Parceler library
@@ -22,6 +22,16 @@ public class Tweet {
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+
+        // If our json has extended entities
+        if (!jsonObject.isNull("extended_entities")) {
+            // - get media
+            JSONArray jsonArray = jsonObject.getJSONObject("extended_entities").getJSONArray("media");
+            // - get media-url-https
+            tweet.mediaHttp = jsonArray.getJSONObject(0).getString("media_url_https");
+        } else {
+            tweet.mediaHttp = null;
+        }
         return tweet;
     }
 
