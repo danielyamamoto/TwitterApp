@@ -22,7 +22,7 @@ import okhttp3.Headers;
 public class ComposeActivity extends AppCompatActivity {
 
     public static final String TAG = "ComposeActivity";
-    public static final int MAX_TWEET_LENGHT = 140;
+    public static final int MAX_TWEET_LENGTH = 280;
 
     TextInputLayout etComposeParent;
     EditText etCompose;
@@ -38,7 +38,7 @@ public class ComposeActivity extends AppCompatActivity {
         client = TwitterApp.getRestClient(this);
 
         etComposeParent = findViewById(R.id.etComposeParent);
-        etComposeParent.setCounterMaxLength(MAX_TWEET_LENGHT);
+        etComposeParent.setCounterMaxLength(MAX_TWEET_LENGTH);
 
         etCompose = findViewById(R.id.etCompose);
 
@@ -51,7 +51,7 @@ public class ComposeActivity extends AppCompatActivity {
                 if (tweetContent.isEmpty()) {
                     Toast.makeText(ComposeActivity.this, "Sorry, your tweet cannot be empty", Toast.LENGTH_SHORT).show();
                 }
-                else if (tweetContent.length() > MAX_TWEET_LENGHT) {
+                else if (tweetContent.length() > MAX_TWEET_LENGTH) {
                     Toast.makeText(ComposeActivity.this, "Sorry, your tweet is too long", Toast.LENGTH_SHORT).show();
                 }
                 else {

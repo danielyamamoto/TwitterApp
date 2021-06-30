@@ -53,6 +53,18 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return tweets.size();
     }
 
+    // Clean all elements of the recycler
+    public void clear() {
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Tweet> list) {
+        tweets.addAll(list);
+        notifyDataSetChanged();
+    }
+
     // Define a viewholder
     public  class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -69,7 +81,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         }
 
         public void bind(Tweet tweet) {
-            ParseRelativeDate parse =  new ParseRelativeDate(); // ParseDate obj
+            ParseRelativeDate parse =  new ParseRelativeDate(); // Parse Date obj
 
             tvBody.setText(tweet.body);
             tvDate.setText(parse.getRelativeTimeAgo(tweet.createdAt)); // Parse the date
