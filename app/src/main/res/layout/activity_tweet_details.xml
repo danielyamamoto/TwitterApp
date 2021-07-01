@@ -5,15 +5,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     tools:context=".activities.TweetDetailsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/twitter_blue">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/tbBack"
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/img"
+                app:srcCompat="@drawable/abc_vector_test" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Tweet"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/ivProfileImageDetails"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/tbDetails"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/img"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -21,8 +53,11 @@
         android:id="@+id/tvNameDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/tbDetails"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_toEndOf="@+id/ivProfileImageDetails"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
@@ -34,8 +69,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvNameDetails"
-        android:layout_marginTop="5dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
         android:layout_toEndOf="@+id/ivProfileImageDetails"
         tools:text="@danielyamamoto" />
 
@@ -46,7 +83,11 @@
         android:layout_below="@+id/ivProfileImageDetails"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:autoLink="all"
+        android:textColorLink="@color/twitter_blue"
         android:textSize="16sp"
         tools:text="This is my tweet!" />
 
@@ -54,10 +95,13 @@
         android:id="@+id/ivUrlImageDetails"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_below="@+id/tvBodyDetails"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="0dp"
         android:contentDescription="@string/img"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -65,10 +109,13 @@
         android:id="@+id/tvDateDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ivUrlImageDetails"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/ivUrlImageDetails"
+
+        android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
         android:textAlignment="textEnd"
         android:textSize="14sp"
         tools:text="1d" />

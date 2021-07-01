@@ -10,14 +10,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
-import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TwitterApp;
 import com.codepath.apps.restclienttemplate.TwitterClient;
+import com.codepath.apps.restclienttemplate.databinding.ActivityTimelineBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.apps.restclienttemplate.adapters.TweetsAdapter;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -43,15 +42,27 @@ public class TimelineActivity extends AppCompatActivity {
     List<Tweet> tweets;
     TweetsAdapter adapter;
     Button btnLogout;
+    ImageView ivTweety;
     FloatingActionButton btnTweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
+        ActivityTimelineBinding binding = ActivityTimelineBinding.inflate(getLayoutInflater());
+        // layout of activity is stored in a special property called root
+        View view = binding.getRoot();
+        setContentView(view);
+
+        ivTweety = binding.tbTweety;
+        ivTweety.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rvTweets.smoothScrollToPosition(0);
+            }
+        });
 
         // Lookup the swipe container view
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer = binding.swipeContainer;
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -70,7 +81,7 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
         client = TwitterApp.getRestClient(this);
-        btnLogout = findViewById(R.id.btnLogout);
+        btnLogout = binding.btnLogout;
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +90,7 @@ public class TimelineActivity extends AppCompatActivity {
         });
 
         // Get floating button and added a click lister
-        btnTweet = findViewById(R.id.ivCompose);
+        btnTweet = binding.ivCompose;
         btnTweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +99,7 @@ public class TimelineActivity extends AppCompatActivity {
         });
 
         // Find the recycler view
-        rvTweets = findViewById(R.id.rvTweets);
+        rvTweets = binding.rvTweets;
 
         // Init the list of tweets and adapter
         tweets = new ArrayList<>();
@@ -98,7 +109,7 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         rvTweets.setAdapter(adapter);
 
-        // Adds seperating line
+        // Adds separating line
         rvTweets.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         // Set the tweets & notify
@@ -129,27 +140,6 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.d("DEBUG", "Fetch timeline error: " + throwable);
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu
-        // This adds items to the action bar if it is present
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        /*if(item.getItemId() == R.id.ivComposes) {
-            // Compose icon has been selected
-            // Navigate to the compose activity
-            Intent intent = new Intent(this, ComposeActivity.class);
-            startActivityForResult(intent, REQUEST_CODE);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);*/
-        return true;
     }
 
     private void writeTweet() {

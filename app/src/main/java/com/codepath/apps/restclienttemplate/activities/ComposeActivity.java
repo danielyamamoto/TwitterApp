@@ -4,15 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TwitterApp;
 import com.codepath.apps.restclienttemplate.TwitterClient;
+import com.codepath.apps.restclienttemplate.databinding.ActivityComposeBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.google.android.material.textfield.TextInputLayout;
@@ -30,22 +33,34 @@ public class ComposeActivity extends AppCompatActivity {
     TextInputLayout etComposeParent;
     EditText etCompose;
     Button btnTweet;
+    ImageView ivBack;
 
     TwitterClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compose);
+        ActivityComposeBinding binding = ActivityComposeBinding.inflate(getLayoutInflater());
+        // layout of activity is stored in a special property called root
+        View view = binding.getRoot();
+        setContentView(view);
 
         client = TwitterApp.getRestClient(this);
 
-        etComposeParent = findViewById(R.id.etComposeParent);
+        etComposeParent = binding.etComposeParent;
         etComposeParent.setCounterMaxLength(MAX_TWEET_LENGTH);
 
-        etCompose = findViewById(R.id.etCompose);
+        etCompose = binding.etCompose;
 
-        btnTweet = findViewById(R.id.btnTweet);
+        ivBack = binding.tbBack;
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btnTweet = binding.btnTweet;
         // Make click listener on button
         btnTweet.setOnClickListener(new View.OnClickListener() {
             @Override

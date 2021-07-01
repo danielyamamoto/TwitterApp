@@ -1,15 +1,15 @@
 package com.codepath.apps.restclienttemplate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.databinding.ActivityTweetDetailsBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.parceler.Parcels;
@@ -20,20 +20,32 @@ public class TweetDetailsActivity extends AppCompatActivity {
 
     Tweet mTweet;
 
-    ImageView ivProfileImage, ivUrlImage;
+    ImageView ivProfileImage, ivUrlImage, ivBack;
     TextView tvName, tvScreenName, tvBody, tvDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tweet_details);
+        ActivityTweetDetailsBinding binding = ActivityTweetDetailsBinding.inflate(getLayoutInflater());
+        // layout of activity is stored in a special property called root
+        View view = binding.getRoot();
+        setContentView(view);
 
-        ivProfileImage = (ImageView) findViewById(R.id.ivProfileImageDetails);
-        tvName = (TextView) findViewById(R.id.tvNameDetails);
-        tvScreenName = (TextView) findViewById(R.id.tvScreenNameDetails);
-        tvBody = (TextView) findViewById(R.id.tvBodyDetails);
-        ivUrlImage = (ImageView) findViewById(R.id.ivUrlImageDetails);
-        tvDate = (TextView) findViewById(R.id.tvDateDetails);
+        // Bindings
+        ivProfileImage = binding.ivProfileImageDetails;
+        tvName = binding.tvNameDetails;
+        tvScreenName = binding.tvScreenNameDetails;
+        tvBody = binding.tvBodyDetails;
+        ivUrlImage = binding.ivUrlImageDetails;
+        tvDate = binding.tvDateDetails;
+        ivBack = binding.tbBack;
+
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Unwrap the tweet passed in via intent, using its simple name as a key
         mTweet = (Tweet) Parcels.unwrap(getIntent().getParcelableExtra(Tweet.class.getSimpleName()));

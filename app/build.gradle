@@ -6,12 +6,15 @@ apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
     compileSdkVersion 28
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.codepath.apps.restclienttemplate"
         minSdkVersion 21
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
 
         // Room schemas
         javaCompileOptions {
@@ -29,11 +32,20 @@ android {
         lintConfig rootProject.file('gradle/lint.xml')
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -61,4 +73,6 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     // Floating button
     implementation 'com.google.android.material:material:1.1.0'
+    // Material Components Design
+    implementation 'com.google.android.material:material:<version>'
 }
