@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.ParseRelativeDate;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -72,16 +71,20 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     public  class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProfileImage, ivUrlImage;
-        TextView tvBody, tvScreenName, tvDate;
+        TextView tvBody, tvScreenName, tvName, tvDate, tvLike, tvRetweet, tvMsg;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
+            tvName = itemView.findViewById(R.id.tvName);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvDate = itemView.findViewById(R.id.tvDate);
             ivUrlImage = itemView.findViewById(R.id.ivUrlImage);
+            tvLike = itemView.findViewById(R.id.tvLike);
+            tvRetweet = itemView.findViewById(R.id.tvRetweet);
+            tvMsg = itemView.findViewById(R.id.tvMsg);
         }
 
         public void bind(Tweet tweet) {
@@ -89,8 +92,14 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             tvBody.setText(tweet.body);
             tvDate.setText(parse.getRelativeTimeAgo(tweet.createdAt)); // Parse the date
-            tvScreenName.setText(tweet.user.screenName);
-            Glide.with(context).load(tweet.user.publicImageURL).into(ivProfileImage);
+            tvName.setText(tweet.user.name);
+            tvScreenName.setText("@" + tweet.user.screenName);
+
+            Glide.with(context).
+                    load(tweet.user.publicImageURL)
+                    .centerCrop()
+                    .transform(new RoundedCornersTransformation(100, 0))
+                    .into(ivProfileImage);
 
             if (tweet.mediaHttp != null) {
                 ivUrlImage.setVisibility(View.VISIBLE);
@@ -104,6 +113,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 ivUrlImage.setVisibility(View.GONE);
             }
 
+            tvLike.setText(String.valueOf(tweet.likes));
+            tvRetweet.setText(String.valueOf(tweet.shares));
+            tvMsg.setText(String.valueOf(tweet.replies));
         }
     }
 }
