@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.ParseRelativeDate;
 import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.activities.TweetDetailsActivity;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.jetbrains.annotations.NotNull;
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -67,7 +70,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
-    // Define a viewholder
+    // Define a view holder
     public  class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProfileImage, ivUrlImage;
@@ -76,15 +79,34 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
-            ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
-            tvBody = itemView.findViewById(R.id.tvBody);
-            tvName = itemView.findViewById(R.id.tvName);
-            tvScreenName = itemView.findViewById(R.id.tvScreenName);
-            tvDate = itemView.findViewById(R.id.tvDate);
-            ivUrlImage = itemView.findViewById(R.id.ivUrlImage);
-            tvLike = itemView.findViewById(R.id.tvLike);
-            tvRetweet = itemView.findViewById(R.id.tvRetweet);
-            tvMsg = itemView.findViewById(R.id.tvMsg);
+            ivProfileImage = (ImageView) itemView.findViewById(R.id.ivProfileImage);
+            tvBody = (TextView) itemView.findViewById(R.id.tvBody);
+            tvName = (TextView) itemView.findViewById(R.id.tvName);
+            tvScreenName = (TextView) itemView.findViewById(R.id.tvScreenName);
+            tvDate = (TextView) itemView.findViewById(R.id.tvDate);
+            ivUrlImage = (ImageView) itemView.findViewById(R.id.ivUrlImage);
+            tvLike = (TextView) itemView.findViewById(R.id.tvLike);
+            tvRetweet = (TextView) itemView.findViewById(R.id.tvRetweet);
+            tvMsg = (TextView) itemView.findViewById(R.id.tvMsg);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Gets item position
+                    int position = getAdapterPosition();
+                    // Make sure the position is valid, i.e. actually exists in the view
+                    if (position != RecyclerView.NO_POSITION) {
+                        // Get the tweet at the position, this won't work if the class is static
+                        Tweet tweet = tweets.get(position);
+                        // create intent for the new activity
+                        Intent intent = new Intent(context, TweetDetailsActivity.class);
+                        // serialize the tweet using parceler, use its short name as a key
+                        intent.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
+                        // show the activity
+                        context.startActivity(intent);
+                    }
+                }
+            });
         }
 
         public void bind(Tweet tweet) {
@@ -107,7 +129,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                         .load(tweet.mediaHttp)
                         .centerCrop()
                         .transform(new RoundedCornersTransformation(50, 10))
-                        //.transform(new RoundedCorners(50))
                         .into(ivUrlImage);
             } else{
                 ivUrlImage.setVisibility(View.GONE);
