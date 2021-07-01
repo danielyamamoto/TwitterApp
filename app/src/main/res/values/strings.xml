@@ -9,5 +9,7 @@
     <string name="what_s_happening">What\'s happening?</string>
     <string name="log_out">Log out</string>
     <string name="compose">Compose</string>
+    <string name="_5000">5000</string>
+    <string name="img">Img</string>
 
 </resources>

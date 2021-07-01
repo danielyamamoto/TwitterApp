@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.apps.restclienttemplate.adapters.TweetsAdapter;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +40,7 @@ public class TimelineActivity extends AppCompatActivity {
     List<Tweet> tweets;
     TweetsAdapter adapter;
     Button btnLogout;
+    FloatingActionButton btnTweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +75,29 @@ public class TimelineActivity extends AppCompatActivity {
             }
         });
 
+        // Get floating button and added a click lister
+        btnTweet = findViewById(R.id.ivCompose);
+        btnTweet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                writeTweet();
+            }
+        });
+
         // Find the recycler view
         rvTweets = findViewById(R.id.rvTweets);
+
         // Init the list of tweets and adapter
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(this, tweets);
+
         // Recycler view setup: layout manager and the adapter
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         rvTweets.setAdapter(adapter);
+
+        // Adds seperating line
+        rvTweets.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
         // Set the tweets & notify
         populateHomeTimeline();
     }
@@ -120,14 +138,20 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.compose) {
+        /*if(item.getItemId() == R.id.ivComposes) {
             // Compose icon has been selected
             // Navigate to the compose activity
             Intent intent = new Intent(this, ComposeActivity.class);
             startActivityForResult(intent, REQUEST_CODE);
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);*/
+        return true;
+    }
+
+    private void writeTweet() {
+        Intent intent = new Intent(this, ComposeActivity.class);
+        startActivity(intent);
     }
 
     @Override
