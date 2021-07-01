@@ -105,11 +105,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 ivUrlImage.setVisibility(View.VISIBLE);
                 Glide.with(context)
                         .load(tweet.mediaHttp)
-                        //.centerCrop()
-                        //.transform(new RoundedCornersTransformation(50, 0))
+                        .centerCrop()
+                        .transform(new RoundedCornersTransformation(50, 10))
                         //.transform(new RoundedCorners(50))
                         .into(ivUrlImage);
-            }else{
+            } else{
                 ivUrlImage.setVisibility(View.GONE);
             }
 

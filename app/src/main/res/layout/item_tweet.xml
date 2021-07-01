@@ -44,9 +44,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/tvBody"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/tvScreenName"
         android:textAlignment="textEnd"
-        android:textSize="12sp"
+        android:textSize="14sp"
         tools:text="1d" />
 
     <TextView
@@ -55,15 +56,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="0dp"
-        android:layout_toStartOf="@+id/tvDate"
         android:layout_toEndOf="@+id/tvName"
         tools:text="@danielyamamoto" />
 
     <ImageView
         android:id="@+id/ivUrlImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_below="@+id/tvBody"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
@@ -86,8 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivUrlImage"
-        android:layout_marginStart="50dp"
-        android:layout_toEndOf="@+id/tvLike"
+        android:layout_marginStart="90dp"
+        android:layout_toEndOf="@+id/ivLike"
         android:contentDescription="@string/img"
         app:srcCompat="@drawable/ic_vector_retweet_stroke" />
 
@@ -96,8 +95,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivUrlImage"
-        android:layout_marginStart="50dp"
-        android:layout_toEndOf="@+id/tvRetweet"
+        android:layout_marginStart="90dp"
+        android:layout_toEndOf="@+id/ivRetweet"
         android:contentDescription="@string/img"
         app:srcCompat="@drawable/ic_vector_messages_stroke" />
 
@@ -106,6 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivUrlImage"
+        android:layout_marginTop="3dp"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivLike"
         android:text="@string/_5000" />
@@ -115,6 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivUrlImage"
+        android:layout_marginTop="3dp"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivRetweet"
         android:text="@string/_5000" />
@@ -124,6 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivUrlImage"
+        android:layout_marginTop="3dp"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivMsg"
         android:text="@string/_5000" />
