@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -21,7 +20,7 @@ public class TweetDetailsActivity extends AppCompatActivity {
     Tweet mTweet;
 
     ImageView ivProfileImage, ivUrlImage, ivBack;
-    TextView tvName, tvScreenName, tvBody, tvDate;
+    TextView tvName, tvScreenName, tvBody, tvDate, tvLike, tvRetweet, tvMsgDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +38,9 @@ public class TweetDetailsActivity extends AppCompatActivity {
         ivUrlImage = binding.ivUrlImageDetails;
         tvDate = binding.tvDateDetails;
         ivBack = binding.tbBack;
+        tvLike = binding.tvLikeDetails;
+        tvRetweet = binding.tvRetweetDetails;
+        tvMsgDetails = binding.tvMsgDetails;
 
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,5 +75,8 @@ public class TweetDetailsActivity extends AppCompatActivity {
         }
 
         tvDate.setText(mTweet.createdAt);
+        tvLike.setText(String.valueOf(mTweet.likes));
+        tvRetweet.setText(String.valueOf(mTweet.shares));
+        tvMsgDetails.setText(String.valueOf(mTweet.replies));
     }
 }
