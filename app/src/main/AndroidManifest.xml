@@ -17,21 +17,29 @@
         <activity
             android:name=".activities.TweetDetailsActivity"
             android:label=""
-            android:theme="@style/AppBaseTheme.NoActionBar">
+            android:theme="@style/AppBaseTheme.NoActionBar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.ComposeActivity"
             android:label=""
-            android:theme="@style/AppBaseTheme.NoActionBar">
+            android:theme="@style/AppBaseTheme.NoActionBar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.TimelineActivity"
             android:label=""
-            android:theme="@style/AppBaseTheme.NoActionBar">
+            android:theme="@style/AppBaseTheme.NoActionBar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

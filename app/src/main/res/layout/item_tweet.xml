@@ -73,67 +73,69 @@
         android:contentDescription="@string/img"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <ImageView
-        android:id="@+id/ivLike"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivUrlImage"
-        android:layout_marginStart="8dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
-        android:contentDescription="@string/img"
-        app:srcCompat="@drawable/ic_vector_heart"
-        app:tint="@color/light_gray" />
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/ivProfileImage">
 
-    <ImageView
-        android:id="@+id/ivRetweet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivUrlImage"
-        android:layout_marginStart="90dp"
-        android:layout_toEndOf="@+id/ivLike"
-        android:contentDescription="@string/img"
-        app:srcCompat="@drawable/ic_vector_retweet_stroke"
-        app:tint="@color/light_gray" />
+        <ImageView
+            android:id="@+id/ivLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/img"
+            app:srcCompat="@drawable/ic_vector_heart"
+            app:tint="@color/light_gray" />
 
-    <ImageView
-        android:id="@+id/ivMsg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivUrlImage"
-        android:layout_marginStart="90dp"
-        android:layout_toEndOf="@+id/ivRetweet"
-        android:contentDescription="@string/img"
-        app:srcCompat="@drawable/ic_vector_messages_stroke"
-        app:tint="@color/light_gray" />
+        <ImageView
+            android:id="@+id/ivRetweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
+            android:layout_toEndOf="@+id/ivLike"
+            android:contentDescription="@string/img"
+            app:srcCompat="@drawable/ic_vector_retweet_stroke"
+            app:tint="@color/light_gray" />
 
-    <TextView
-        android:id="@+id/tvLike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivUrlImage"
-        android:layout_marginTop="3dp"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/ivLike"
-        android:text="@string/_5000" />
+        <ImageView
+            android:id="@+id/ivMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
+            android:layout_toEndOf="@+id/ivRetweet"
+            android:contentDescription="@string/img"
+            app:srcCompat="@drawable/ic_vector_messages_stroke"
+            app:tint="@color/light_gray" />
 
-    <TextView
-        android:id="@+id/tvRetweet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivUrlImage"
-        android:layout_marginTop="3dp"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/ivRetweet"
-        android:text="@string/_5000" />
+        <TextView
+            android:id="@+id/tvLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/ivLike"
+            android:text="@string/_5000" />
 
-    <TextView
-        android:id="@+id/tvMsg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivUrlImage"
-        android:layout_marginTop="3dp"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/ivMsg"
-        android:text="@string/_5000" />
+        <TextView
+            android:id="@+id/tvRetweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/ivRetweet"
+            android:text="@string/_5000" />
+
+        <TextView
+            android:id="@+id/tvMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/ivMsg"
+            android:text="@string/_5000" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
